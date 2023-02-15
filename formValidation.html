@@ -140,6 +140,25 @@
             <span id="emailerr" class="text-danger font-weight-bold"></span>
           </div>
           <div class="form-group">
+            <label>Message: <span>*</span></label>
+            <textarea
+              id="message"
+              name="message"
+              placeholder="Enter your message"
+              row="6"
+              class="form-control"
+            ></textarea>
+
+            <span id="messageerr" class="text-danger font-weight-bold"></span>
+          </div>
+          <div class="form-group">
+            <label>User Image: <span>*</span></label>
+            <input type="file" name="user_image" id="user_image" />
+            <div>
+              <span id="imageerr" class="text-danger font-weight-bold"></span>
+            </div>
+          </div>
+          <div class="form-group">
             <input
               type="submit"
               name="submit"
@@ -153,9 +172,13 @@
     </div>
     <!-- Js script -->
     <script text="text/javascript">
-      function validation() {
+      var form = document.getElementById('user_form');
+      function validation(event) {
+        //Preventing page refresh
+        event.preventDefault();
         // console.log('form-log-->', document.user_form.email.value);
         // console.log('form-log-->', document.user_form.submit.value);
+
         var user = document.getElementById('user').value;
         var userName = document.user_form.user; // for focus
         var gender = document.user_form.gender;
@@ -168,7 +191,13 @@
         var mobileNo = document.user_form.mobile; // for focus
         var email = document.getElementById('email').value;
         var emailId = document.user_form.email; // for focus
-        console.log('course-->', gender.value);
+        var message = document.getElementById('message').value;
+        var messageField = document.user_form.message; // for focus
+
+        // Image validation
+        var userImage = document.forms['user_form']['user_image'];
+        console.log('userImage-->', userImage.value);
+        var validExt = ['jpeg', 'png', 'jpg'];
 
         // if(userName.value.length <= 0) {}
         if (user == '') {
@@ -266,8 +295,33 @@
           ('** . Invalid position');
           return false;
         }
-        true;
+
+        if (message == '') {
+          document.getElementById('messageerr').innerHTML =
+            '** Please provide message';
+          messageField.focus();
+          return false;
+        }
+        if (message.length <= 5) {
+          document.getElementById('messageerr').innerHTML =
+            '** Message minimum 5 characters long';
+          messageField.focus();
+          return false;
+        }
+
+        if (userImage.value == '') {
+          document.getElementById('imageerr').innerHTML =
+            '** Please select image';
+          return false;
+        } else {
+          var pos_of_dot = userImage.value.lastIndexOf('.');
+          var img_ext = userImage.value.substring(pos_of_dot);
+          console.log('img_ext-->', pos_of_dot, img_ext);
+        }
+        return true;
       }
+      //Calling a function during form submission.
+      form.addEventListener('submit', validation);
     </script>
   </body>
 </html>
