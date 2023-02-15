@@ -51,6 +51,14 @@
 
           <div class="form-group">
             <label>Gender: <span>*</span> </label>
+            <!-- <input
+              type="radio"
+              checked
+              name="gender"
+              id="gender"
+              value="male"
+              autocomplete="off"
+            /> -->
             <input
               type="radio"
               name="gender"
@@ -77,6 +85,46 @@
             Other
             <div>
               <span id="gendererr" class="text-danger font-weight-bold"></span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>User Type: <span>*</span> </label>&nbsp; &nbsp;
+            <!-- <input
+              type="checkbox"
+              checked
+              name="usertype"
+              id="usertype"
+              value="admin"
+              autocomplete="off"
+            /> -->
+            <input
+              type="checkbox"
+              name="user_type"
+              id="user_type"
+              value="admin"
+              autocomplete="off"
+            />&nbsp; Admin&nbsp;
+            <input
+              type="checkbox"
+              name="user_type"
+              id="user_type"
+              value="employee"
+              autocomplete="off"
+            />&nbsp; Employee &nbsp;
+            <input
+              type="checkbox"
+              name="user_type"
+              id="user_type"
+              value="hr"
+              autocomplete="off"
+            />
+            &nbsp; HR
+            <div>
+              <span
+                id="usertypeerr"
+                class="text-danger font-weight-bold"
+              ></span>
             </div>
           </div>
 
@@ -188,6 +236,11 @@
         var user = document.getElementById('user').value;
         var userName = document.user_form.user; // for focus
         var gender = document.user_form.gender;
+        console.log('gender-->', gender.value);
+
+        var userType = document.querySelector('#user_type');
+        console.log('usertype-->', userType);
+
         var course = document.user_form.course;
         var password = document.getElementById('password').value;
         var passWord = document.user_form.password; // for focus
@@ -228,13 +281,16 @@
         if (gender.value.length <= 0) {
           document.getElementById('gendererr').innerHTML =
             '** Please select gender';
-          // gender.focus();
+          return false;
+        }
+        if (userType.checked == false) {
+          document.getElementById('usertypeerr').innerHTML =
+            '** Choose one user type';
           return false;
         }
         if (course.value.length <= 0) {
           document.getElementById('courceerr').innerHTML =
             '** Please select course';
-          // course.focus();
           return false;
         }
         if (password == '') {
