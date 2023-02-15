@@ -82,7 +82,7 @@
 
           <div class="form-group">
             <label>Course: <span>*</span> </label>
-            <select id="course" name="course">
+            <select id="course" name="course" class="form-control">
               <option value="">--Select--</option>
               <option value="BTech">BTech</option>
               <option value="MTech">MTech</option>
@@ -154,7 +154,12 @@
           <div class="form-group">
             <label>User Image: <span>*</span></label>
             <!-- <input type="file" accept="image/png, image/gif, image/jpeg" name="user_image" id="user_image" /> -->
-            <input type="file" name="user_image" id="user_image" />
+            <input
+              type="file"
+              name="user_image"
+              id="user_image"
+              class="form-control"
+            />
             <div>
               <span id="imageerr" class="text-danger font-weight-bold"></span>
             </div>
