@@ -29,10 +29,11 @@
 
       <form
         action="#"
-        class=""
+        class="employee_form_class"
         method=""
         name="employee_form"
         id="employee_form"
+        onsubmit="return validFormSubmit()"
       >
         <div class="row mt-4 mb-4">
           <div class="col-md-6">
@@ -44,16 +45,18 @@
               placeholder="Type username"
               class="form-control"
             />
+            <span id="user_err" style="color: red"></span>
           </div>
           <div class="col-md-6">
             <label>Password <span>*</span></label>
             <input
-              type="password"
+              type="text"
               name="password"
               id="password"
               placeholder="Type password"
               class="form-control"
             />
+            <span id="pass_err" style="color: red"></span>
           </div>
         </div>
         <div class="row mb-4">
@@ -66,6 +69,7 @@
               placeholder="Type Re-password"
               class="form-control"
             />
+            <span id="con_pass_err" style="color: red"></span>
           </div>
           <div class="col-md-6">
             <label>Mobile <span>*</span></label>
@@ -76,6 +80,7 @@
               placeholder="Type mobile number"
               class="form-control"
             />
+            <span id="mobile_err" style="color: red"></span>
           </div>
         </div>
 
@@ -86,9 +91,10 @@
               type="text"
               name="email"
               id="email"
-              placeholder="Type email"
+              placeholder="test@yahoo.com"
               class="form-control"
             />
+            <span id="email_err" style="color: red"></span>
           </div>
           <div class="col-md-6">
             <label>User Image <span>*</span></label>
@@ -143,12 +149,13 @@
         <div class="row mb-4">
           <div class="col-md-6">
             <label>Course <span>*</span></label>
-            <select class="form-control">
+            <select id="course" name="course" class="form-control">
               <option value="">--Select--</option>
               <option value="BTech">BTech</option>
               <option value="MTech">MTech</option>
               <option value="PHD">PHD</option>
             </select>
+            <span id="course_err" style="color: red"></span>
           </div>
           <div class="col-md-6">
             <label>User Message <span>*</span></label>
@@ -158,11 +165,112 @@
               class="form-control"
               rows="4"
             ></textarea>
+            <span id="message_err" style="color: red"></span>
           </div>
         </div>
 
-        <button type="submit" class="btn btn-success">Primary</button>
+        <button type="submit" class="btn btn-success">Submit</button>
       </form>
     </div>
+
+    <script text="text/javascript">
+      var form = document.getElementById('employee_form');
+      function validFormSubmit(event) {
+        event.preventDefault();
+        // variable definition
+        var userName = document.getElementById('username').value;
+
+        var passWord = document.getElementById('password').value;
+
+        // console.log('passWord-lengeth-->', passWord.length);
+        var confirmpassWord = document.getElementById('confirmpass').value;
+        var mobileNo = document.getElementById('mobile').value;
+        // console.log('mobileNo-->', mobileNo);
+        var emailId = document.getElementById('email').value;
+        var courseField = document.getElementById('course').value;
+        var userMessage = document.getElementById('usermessage').value;
+        console.log('courseField-->', courseField);
+
+        // logic
+        if (userName == '') {
+          document.querySelector('#user_err').innerHTML =
+            '** Please add username';
+          // setTimeout(() => {
+          //   document.querySelector('#user_err').innerHTML = '';
+          // }, 3000);
+          return false;
+        }
+        if (passWord == '') {
+          document.querySelector('#pass_err').innerHTML =
+            '** Please add password';
+          // setTimeout(() => {
+          //   document.querySelector('#pass_err').innerHTML = '';
+          // }, 3000);
+          return false;
+        }
+        if (passWord.length < 2 || passWord.length >= 20) {
+          document.querySelector('#pass_err').innerHTML =
+            '** Password must be between 2 and 20';
+          return false;
+        }
+        if (confirmpassWord == '') {
+          document.querySelector('#con_pass_err').innerHTML =
+            '** Please add confirm password';
+          // setTimeout(() => {
+          //   document.querySelector('#pass_err').innerHTML = '';
+          // }, 3000);
+          return false;
+        }
+
+        if (passWord !== confirmpassWord) {
+          document.querySelector('#con_pass_err').innerHTML =
+            '** Password missmatch';
+          return false;
+        }
+        if (!mobileNo) {
+          document.querySelector('#mobile_err').innerHTML =
+            '** Add mobile number';
+          return false;
+        }
+        if (isNaN(mobileNo)) {
+          document.querySelector('#mobile_err').innerHTML =
+            '** Mobile number is a number';
+          return false;
+        }
+        if (mobileNo.length != 10) {
+          document.querySelector('#mobile_err').innerHTML =
+            '** Mobile number always 10 digit';
+          return false;
+        }
+
+        if (!emailId) {
+          document.querySelector('#email_err').innerHTML =
+            '** Please add email';
+          return false;
+        }
+        // if (emailId.indexOf('@')) {
+        //   document.querySelector('#email_err').innerHTML =
+        //     '** Invalid email need add @';
+        //   return false;
+        // }
+        if (courseField == '') {
+          document.querySelector('#course_err').innerHTML =
+            '** Please select one course';
+          return false;
+        }
+        if (userMessage == '') {
+          document.querySelector('#message_err').innerHTML =
+            '** Please add message';
+          return false;
+        }
+        if (userMessage.length < 3) {
+          document.querySelector('#message_err').innerHTML =
+            '** message must be max 3';
+          return false;
+        }
+        return true;
+      }
+      form.addEventListener('submit', validFormSubmit);
+    </script>
   </body>
 </html>
