@@ -123,6 +123,9 @@
               id="gender"
               value="other"
             />&nbsp;Other
+            <div>
+              <span id="gender_err" style="color: red"></span>
+            </div>
           </div>
           <div class="col-md-6">
             <label>Usertype <span>*</span></label>
@@ -144,6 +147,9 @@
               id="usertype"
               value="hr"
             />&nbsp; HR
+            <div>
+              <span id="usertype_err" style="color: red"></span>
+            </div>
           </div>
         </div>
         <div class="row mb-4">
@@ -189,7 +195,10 @@
         var emailId = document.getElementById('email').value;
         var courseField = document.getElementById('course').value;
         var userMessage = document.getElementById('usermessage').value;
-        console.log('courseField-->', courseField);
+        // console.log('courseField-->', courseField);
+        var gender = document.employee_form.gender;
+        var userType = document.getElementById('usertype');
+        console.log('userType-->', userType.checked);
 
         // logic
         if (userName == '') {
@@ -253,6 +262,19 @@
         //     '** Invalid email need add @';
         //   return false;
         // }
+
+        if (gender.value.length == 0) {
+          document.querySelector('#gender_err').innerHTML =
+            '** Please select gender';
+          return false;
+        }
+
+        if (userType.checked == false) {
+          document.querySelector('#usertype_err').innerHTML =
+            '** Please select one user';
+          return false;
+        }
+
         if (courseField == '') {
           document.querySelector('#course_err').innerHTML =
             '** Please select one course';
