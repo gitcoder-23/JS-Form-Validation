@@ -4,18 +4,23 @@ var formName = document.getElementById('employee_form');
 function validFormSubmit(e) {
   e.preventDefault();
   var userName = document.getElementById('username').value;
-  console.log('Sumanpass-->', userName);
+  console.log('InputName-->', userName);
   var passWord = document.getElementById('password').value;
   console.log('passWord-->', passWord);
   var confirmPassword = document.getElementById('confirmpass').value;
   console.log('confirm-password-->', confirmPassword);
   var mobileNumber = document.getElementById('mobile').value;
   console.log('mobilenumber-->', mobileNumber);
+  var emailAddress = document.getElementById('email').value;
+  console.log('Email-->', emailAddress);
 
   if (userName == '') {
     document.getElementById('user_err').innerHTML = '* Please add user name';
     return false;
-  } else {
+  } else if (!isNaN(userName)){
+    document.getElementById('user_err').innerHTML = '* User Name should be typed in alphabet !!'
+  }
+  else {
     document.getElementById('user_err').innerHTML = '';
   }
   if (!passWord) {
@@ -39,9 +44,20 @@ function validFormSubmit(e) {
   } else if (mobileNumber.length !=10){
     document.getElementById('mobile_err').innerHTML = '*Mobile Number must be 10 digit';
     return false;
-  } else {
+  } else if (isNaN(mobileNumber)){
+    document.getElementById('mobile_err').innerHTML = '* Mobile Number must typed in number !!'
+    return false;
+  }
+  else {
     document.getElementById('mobile_err').innerHTML = '';
   }
+  if (emailAddress==''){
+    document.getElementById('email_err').innerHTML = '* This field is empty !';
+    return false;
+  } else {
+    document.getElementById('email_err').innerHTML = '';
+  }
+  
   
   return true;
 }
