@@ -14,6 +14,7 @@ function validation(event) {
   console.log('usertype-->', userType);
 
   var course = document.user_form.course;
+  console.log('course-->', course.value.length);
   var password = document.getElementById('password').value;
   var passWord = document.user_form.password; // for focus
   var confirmpass = document.getElementById('confirmpass').value;
