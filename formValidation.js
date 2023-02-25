@@ -16,7 +16,9 @@ function validFormSubmit(e) {
   var genderInput = document.employee_form.gender_field;
   console.log('genderInput-->', genderInput);
   var userType = document.employee_form;
-  console.log('userType-->', userType.user_type[1]);
+  console.log('userType-->', userType.user_type);
+  var userMessage = document.getElementById('usermessage').value;
+  console.log('userMessage-->', userMessage);
 
   if (userName == '') {
     document.getElementById('user_err').innerHTML = '* Please add user name';
@@ -79,6 +81,13 @@ function validFormSubmit(e) {
     return false;
   } else {
     document.getElementById('usertype_err').innerHTML = '';
+  }
+  if (userMessage == '') {
+    document.getElementById('message_err').innerHTML =
+      '** Please add any message';
+    return false;
+  } else {
+    document.getElementById('message_err').innerHTML = '';
   }
   return true;
 }
