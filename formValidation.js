@@ -13,6 +13,9 @@ function validFormSubmit(e) {
   console.log('mobilenumber-->', mobileNumber);
   var emailAddress = document.getElementById('email').value;
   console.log('Email-->', emailAddress);
+  var genderInput = document.getElementById('gender').value;
+  console.log('genderInput-->', genderInput);
+ 
 
   if (userName == '') {
     document.getElementById('user_err').innerHTML = '* Please add user name';
@@ -57,8 +60,13 @@ function validFormSubmit(e) {
   } else {
     document.getElementById('email_err').innerHTML = '';
   }
-  
-  
+  if (genderInput.value="") {
+    document.getElementById('gender_err').innerHTML = '** Please select gender';
+    return false;
+  }
+  else {
+    document.getElementById('gender_err').innerHTML = '';
+  }
   return true;
 }
 formName.addEventListener('submit', validFormSubmit);
