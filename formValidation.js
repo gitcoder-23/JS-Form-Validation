@@ -14,7 +14,9 @@ function validFormSubmit(e) {
   var emailAddress = document.getElementById('email').value;
   console.log('Email-->', emailAddress);
   var genderInput = document.employee_form.gender_field;
-  console.log('genderInput-->', genderInput.value);
+  console.log('genderInput-->', genderInput);
+  var userType = document.employee_form;
+  console.log('userType-->', userType.user_type[1]);
 
   if (userName == '') {
     document.getElementById('user_err').innerHTML = '* Please add user name';
@@ -66,6 +68,17 @@ function validFormSubmit(e) {
     return false;
   } else {
     document.getElementById('gender_err').innerHTML = '';
+  }
+  if (
+    userType.user_type[0].checked == false &&
+    userType.user_type[1].checked == false &&
+    userType.user_type[2].checked == false
+  ) {
+    document.getElementById('usertype_err').innerHTML =
+      '** Please select atleast one user';
+    return false;
+  } else {
+    document.getElementById('usertype_err').innerHTML = '';
   }
   return true;
 }

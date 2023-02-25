@@ -1,3 +1,5 @@
+// checkbox validation http://www.chennaisunday.com/jscheckbox.html
+
 var form = document.getElementById('user_form');
 function validation(event) {
   //Preventing page refresh
