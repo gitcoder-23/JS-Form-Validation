@@ -13,17 +13,16 @@ function validFormSubmit(e) {
   console.log('mobilenumber-->', mobileNumber);
   var emailAddress = document.getElementById('email').value;
   console.log('Email-->', emailAddress);
-  var genderInput = document.getElementById('gender').value;
-  console.log('genderInput-->', genderInput);
- 
+  var genderInput = document.employee_form.gender_field;
+  console.log('genderInput-->', genderInput.value);
 
   if (userName == '') {
     document.getElementById('user_err').innerHTML = '* Please add user name';
     return false;
-  } else if (!isNaN(userName)){
-    document.getElementById('user_err').innerHTML = '* User Name should be typed in alphabet !!'
-  }
-  else {
+  } else if (!isNaN(userName)) {
+    document.getElementById('user_err').innerHTML =
+      '* User Name should be typed in alphabet !!';
+  } else {
     document.getElementById('user_err').innerHTML = '';
   }
   if (!passWord) {
@@ -32,39 +31,40 @@ function validFormSubmit(e) {
   } else {
     document.getElementById('pass_err').innerHTML = '';
   }
-  if (confirmPassword==''){
+  if (confirmPassword == '') {
     document.getElementById('con_pass_err').innerHTML = '* This field is empty';
     return false;
-  } else if (confirmPassword!==passWord){
+  } else if (confirmPassword !== passWord) {
     document.getElementById('con_pass_err').innerHTML = '* Password Mismatch';
     return false;
   } else {
     document.getElementById('con_pass_err').innerHTML = '';
   }
-  if (mobileNumber==''){
-    document.getElementById('mobile_err').innerHTML = '* Please add mobile number';
+  if (mobileNumber == '') {
+    document.getElementById('mobile_err').innerHTML =
+      '* Please add mobile number';
     return false;
-  } else if (mobileNumber.length !=10){
-    document.getElementById('mobile_err').innerHTML = '*Mobile Number must be 10 digit';
+  } else if (mobileNumber.length != 10) {
+    document.getElementById('mobile_err').innerHTML =
+      '*Mobile Number must be 10 digit';
     return false;
-  } else if (isNaN(mobileNumber)){
-    document.getElementById('mobile_err').innerHTML = '* Mobile Number must typed in number !!'
+  } else if (isNaN(mobileNumber)) {
+    document.getElementById('mobile_err').innerHTML =
+      '* Mobile Number must typed in number !!';
     return false;
-  }
-  else {
+  } else {
     document.getElementById('mobile_err').innerHTML = '';
   }
-  if (emailAddress==''){
+  if (emailAddress == '') {
     document.getElementById('email_err').innerHTML = '* This field is empty !';
     return false;
   } else {
     document.getElementById('email_err').innerHTML = '';
   }
-  if (genderInput.value="") {
+  if (genderInput.value == '') {
     document.getElementById('gender_err').innerHTML = '** Please select gender';
     return false;
-  }
-  else {
+  } else {
     document.getElementById('gender_err').innerHTML = '';
   }
   return true;
